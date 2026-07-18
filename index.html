@@ -25,7 +25,7 @@
       box-shadow:
         inset 0 0 0 1px rgba(231,198,111,.2),
         inset 0 0 90px rgba(0,0,0,.42);
-      transition:transform 1.7s cubic-bezier(.75,0,.12,1);
+      transition:transform 2.15s cubic-bezier(.75,0,.12,1);
     }
     .door::before{
       content:"";
@@ -90,7 +90,27 @@
       .right .door-initial{transform:translateX(0) translateZ(0)}
     }
     .music-btn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:52px;height:52px;border-radius:50%;z-index:80;border:1px solid var(--gold-2);color:var(--gold);background:rgba(1,11,9,.88);backdrop-filter:blur(12px);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .section{position:relative;padding:92px 18px;overflow:hidden}.wrap{width:min(1040px,100%);margin:0 auto}.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding-top:max(42px,env(safe-area-inset-top));padding-bottom:max(44px,env(safe-area-inset-bottom))}.hero::before{content:"";position:absolute;width:min(680px,110vw);height:70%;left:50%;top:5%;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(234,201,111,.14),rgba(234,201,111,.045) 34%,transparent 70%);filter:blur(20px)}.hero-inner{position:relative;z-index:2;width:min(760px,100%);opacity:0;transform:translateY(22px)}body.ready .hero-inner{animation:heroIn 1.2s .75s ease forwards}@keyframes heroIn{to{opacity:1;transform:none}}
+    .section{position:relative;padding:92px 18px;overflow:hidden}.wrap{width:min(1040px,100%);margin:0 auto}.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding-top:max(42px,env(safe-area-inset-top));padding-bottom:max(44px,env(safe-area-inset-bottom))}.hero::before{content:"";position:absolute;width:min(680px,110vw);height:70%;left:50%;top:5%;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(234,201,111,.14),rgba(234,201,111,.045) 34%,transparent 70%);filter:blur(20px)}.hero-inner{position:relative;z-index:2;width:min(760px,100%);opacity:1}
+    .hero-stage .couple-art,
+    .hero-stage .bismillah,
+    .hero-stage .eyebrow,
+    .hero-stage .names,
+    .hero-stage .invite-copy,
+    .hero-stage .primary-btn,
+    .hero-inner>.star{
+      opacity:0;
+      translate:0 18px;
+    }
+    body.ready .hero-stage .couple-art{animation:cinematicReveal 1.4s .18s ease forwards,coupleFloat 5.5s 1.7s ease-in-out infinite alternate}
+    body.ready .hero-inner>.star{animation:cinematicReveal .8s .58s ease forwards}
+    body.ready .hero-stage .bismillah{animation:cinematicReveal .9s .72s ease forwards}
+    body.ready .hero-stage .eyebrow{animation:cinematicReveal .9s .86s ease forwards}
+    body.ready .hero-stage .names{animation:cinematicReveal 1.05s 1.02s cubic-bezier(.22,.8,.24,1) forwards}
+    body.ready .hero-stage .invite-copy{animation:cinematicReveal .9s 1.30s ease forwards}
+    body.ready .hero-stage .primary-btn{animation:cinematicReveal .9s 1.52s ease forwards}
+    @keyframes cinematicReveal{
+      to{opacity:1;translate:0 0}
+    }
     .star{color:var(--gold);font-size:1.45rem;margin-bottom:22px;text-shadow:0 0 20px rgba(231,198,111,.5)}.bismillah{font-family:var(--arabic);font-size:clamp(1.25rem,4.8vw,2.05rem);line-height:1.35;color:var(--gold);margin:8px auto 14px;text-shadow:0 0 24px rgba(231,198,111,.18)}
     .hero-stage{
       position:relative;
@@ -138,7 +158,6 @@
         rgba(0,0,0,.78) 92%,
         transparent 100%
       );
-      animation:coupleFloat 5.5s ease-in-out infinite alternate;
     }
     .hero-stage::after{
       content:"";
@@ -215,6 +234,102 @@
       }
     }
 
+
+    .hand-glow{
+      position:absolute;
+      left:50%;
+      top:49%;
+      width:132px;
+      height:132px;
+      z-index:1;
+      transform:translate(-50%,-50%);
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(255,224,137,.38) 0%,rgba(231,198,111,.16) 32%,transparent 70%);
+      filter:blur(8px);
+      opacity:0;
+      pointer-events:none;
+      animation:handPulse 3.2s ease-in-out infinite;
+    }
+    body.ready .hand-glow{opacity:1;transition:opacity 1.2s 1.05s ease}
+    @keyframes handPulse{
+      50%{transform:translate(-50%,-50%) scale(1.12);opacity:.72}
+    }
+    .gold-particles{
+      position:absolute;
+      z-index:1;
+      left:50%;
+      top:49%;
+      width:190px;
+      height:150px;
+      transform:translate(-50%,-50%);
+      pointer-events:none;
+      opacity:0;
+    }
+    body.ready .gold-particles{opacity:1;transition:opacity 1.2s 1.15s ease}
+    .gold-particles i{
+      position:absolute;
+      width:4px;
+      height:4px;
+      border-radius:50%;
+      background:#f1cf75;
+      box-shadow:0 0 9px rgba(241,207,117,.8);
+      animation:particleDrift 3.8s ease-in-out infinite;
+    }
+    .gold-particles i:nth-child(1){left:18%;top:62%;animation-delay:.1s}
+    .gold-particles i:nth-child(2){left:33%;top:35%;width:3px;height:3px;animation-delay:.7s}
+    .gold-particles i:nth-child(3){left:48%;top:72%;animation-delay:1.2s}
+    .gold-particles i:nth-child(4){left:61%;top:28%;width:3px;height:3px;animation-delay:1.8s}
+    .gold-particles i:nth-child(5){left:78%;top:58%;animation-delay:2.3s}
+    .gold-particles i:nth-child(6){left:55%;top:50%;width:2px;height:2px;animation-delay:2.8s}
+    @keyframes particleDrift{
+      0%,100%{transform:translateY(6px) scale(.75);opacity:.18}
+      50%{transform:translateY(-12px) scale(1.2);opacity:.95}
+    }
+    .hero-stage .names{
+      overflow:visible;
+    }
+    .hero-stage .names::after{
+      content:"";
+      position:absolute;
+      inset:-8% -10%;
+      background:linear-gradient(110deg,transparent 35%,rgba(255,245,205,.22) 48%,transparent 61%);
+      transform:translateX(-120%);
+      mix-blend-mode:screen;
+      pointer-events:none;
+      animation:nameShimmer 7s 3.5s ease-in-out infinite;
+    }
+    @keyframes nameShimmer{
+      0%,68%,100%{transform:translateX(-120%)}
+      80%{transform:translateX(120%)}
+    }
+    .primary-btn{
+      overflow:hidden;
+      isolation:isolate;
+      border:1px solid rgba(255,238,180,.38);
+      box-shadow:
+        0 14px 38px rgba(221,183,86,.25),
+        inset 0 1px rgba(255,255,255,.72),
+        inset 0 -8px 18px rgba(139,91,20,.12);
+    }
+    .primary-btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(110deg,transparent 24%,rgba(255,255,255,.42) 48%,transparent 72%);
+      transform:translateX(-130%);
+      animation:buttonSheen 5.8s 3s ease-in-out infinite;
+    }
+    @keyframes buttonSheen{
+      0%,72%,100%{transform:translateX(-130%)}
+      86%{transform:translateX(130%)}
+    }
+    @media(max-width:600px){
+      .hand-glow{top:49%;width:106px;height:106px}
+      .gold-particles{top:49%;width:150px;height:125px}
+      .primary-btn{min-width:232px;padding:16px 30px}
+    }
+
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
@@ -230,6 +345,8 @@
           src="faisal-zara-couple.png"
           alt="Illustration of a bride and groom holding hands"
         />
+        <span class="hand-glow" aria-hidden="true"></span>
+        <span class="gold-particles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
         <div class="bismillah" dir="rtl" lang="ar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
         <p class="eyebrow">Together with their families</p>
         <h1 class="names">Faisal<span class="amp">&amp;</span>Zara</h1>
@@ -248,7 +365,7 @@
     <section class="section closing"><div class="wrap reveal"><div class="star">✦</div><p>Your presence and prayers will make our celebration truly special.</p><h2 class="section-title" style="font-size:clamp(3rem,13vw,5.8rem);margin-bottom:0">Faisal &amp; Zara</h2></div></section>
   </main>
   <script>
-    window.addEventListener("load",()=>{const d=document.getElementById("doorScreen");setTimeout(()=>d.classList.add("open"),350);setTimeout(()=>{document.body.classList.remove("locked");document.body.classList.add("ready");d.remove()},2150)});
+    window.addEventListener("load",()=>{const d=document.getElementById("doorScreen");setTimeout(()=>d.classList.add("open"),420);setTimeout(()=>{document.body.classList.remove("locked");document.body.classList.add("ready")},1750);setTimeout(()=>d.remove(),2850)});
     document.getElementById("viewInvitation").addEventListener("click",()=>document.getElementById("events").scrollIntoView({behavior:"smooth"}));
     const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}}),{threshold:.13,rootMargin:"0px 0px -40px"});document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
     const baratDate=new Date("2026-07-30T19:00:00+05:00").getTime();function updateCountdown(){const diff=Math.max(0,baratDate-Date.now()),d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);days.textContent=String(d).padStart(2,"0");hours.textContent=String(h).padStart(2,"0");minutes.textContent=String(m).padStart(2,"0");seconds.textContent=String(s).padStart(2,"0")}updateCountdown();setInterval(updateCountdown,1000);
