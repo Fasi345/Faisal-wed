@@ -331,13 +331,96 @@
       .primary-btn{min-width:232px;padding:16px 30px}
     }
 
+
+    .door-prompt{
+      position:fixed;
+      left:50%;
+      bottom:max(42px,calc(30px + env(safe-area-inset-bottom)));
+      z-index:10001;
+      transform:translateX(-50%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:11px;
+      width:min(86vw,360px);
+      text-align:center;
+      transition:opacity .55s ease,transform .55s ease;
+    }
+    .door-prompt.hidden{
+      opacity:0;
+      transform:translateX(-50%) translateY(14px);
+      pointer-events:none;
+    }
+    .open-invitation-btn{
+      position:relative;
+      min-width:230px;
+      padding:15px 30px;
+      border-radius:999px;
+      border:1px solid rgba(255,236,171,.58);
+      color:#08251f;
+      background:linear-gradient(135deg,#fff0b7 0%,#e7c66f 44%,#bd8a31 100%);
+      font-family:var(--sans);
+      font-size:.92rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      cursor:pointer;
+      box-shadow:
+        0 16px 42px rgba(0,0,0,.44),
+        0 0 28px rgba(231,198,111,.2),
+        inset 0 1px rgba(255,255,255,.74);
+      overflow:hidden;
+    }
+    .open-invitation-btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(110deg,transparent 22%,rgba(255,255,255,.55) 48%,transparent 74%);
+      transform:translateX(-135%);
+      animation:doorButtonSheen 3.8s 1s ease-in-out infinite;
+    }
+    @keyframes doorButtonSheen{
+      0%,62%,100%{transform:translateX(-135%)}
+      82%{transform:translateX(135%)}
+    }
+    .door-prompt small{
+      color:rgba(255,242,199,.78);
+      font-size:.74rem;
+      letter-spacing:.08em;
+      text-shadow:0 2px 12px rgba(0,0,0,.72);
+    }
+    .music-btn.playing{
+      color:#102a23;
+      background:linear-gradient(135deg,#f8dfa0,#c9973d);
+      box-shadow:
+        0 0 0 7px rgba(231,198,111,.08),
+        0 12px 34px rgba(0,0,0,.32),
+        0 0 24px rgba(231,198,111,.28);
+      animation:musicPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes musicPulse{
+      50%{transform:scale(1.06)}
+    }
+    @media(max-width:520px){
+      .door-prompt{bottom:max(34px,calc(24px + env(safe-area-inset-bottom)))}
+      .open-invitation-btn{min-width:210px;padding:14px 25px;font-size:.84rem}
+      .door-prompt small{font-size:.68rem}
+    }
+
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
 <body class="locked">
   <div class="grain"></div><div class="aurora"></div>
   <div class="door-screen" id="doorScreen" aria-hidden="true"><div class="door left"><span class="door-initial">F</span><span class="door-mark"></span></div><div class="door right"><span class="door-initial">Z</span><span class="door-mark"></span></div></div>
-  <button class="music-btn" id="musicBtn" aria-label="Music will be added later" title="Music will be added later">♪</button>
+  <div class="door-prompt" id="doorPrompt">
+    <button class="open-invitation-btn" id="openInvitationBtn">Open Invitation</button>
+    <small>Tap to open with music</small>
+  </div>
+  <audio id="weddingAudio" preload="auto" loop>
+    <source src="wedding-music.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-btn" id="musicBtn" aria-label="Play or pause wedding music" title="Play or pause music">♪</button>
   <main>
     <section class="section hero" id="home"><div class="hero-inner"><div class="star">✦</div>
       <div class="hero-stage">
@@ -368,7 +451,59 @@
     <section class="section closing"><div class="wrap reveal"><div class="star">✦</div><p>Your presence and prayers will make our celebration truly special.</p><h2 class="section-title" style="font-size:clamp(3rem,13vw,5.8rem);margin-bottom:0">Faisal &amp; Zara</h2></div></section>
   </main>
   <script>
-    window.addEventListener("load",()=>{const d=document.getElementById("doorScreen");setTimeout(()=>d.classList.add("open"),420);setTimeout(()=>{document.body.classList.remove("locked");document.body.classList.add("ready")},1750);setTimeout(()=>d.remove(),2850)});
+    const doorScreen=document.getElementById("doorScreen");
+    const doorPrompt=document.getElementById("doorPrompt");
+    const openInvitationBtn=document.getElementById("openInvitationBtn");
+    const weddingAudio=document.getElementById("weddingAudio");
+    const musicBtn=document.getElementById("musicBtn");
+    let musicFadeTimer=null;
+
+    function fadeAudioTo(target,duration=1800){
+      clearInterval(musicFadeTimer);
+      const start=weddingAudio.volume;
+      const steps=30;
+      const stepTime=Math.max(30,duration/steps);
+      let current=0;
+      musicFadeTimer=setInterval(()=>{
+        current++;
+        weddingAudio.volume=start+(target-start)*(current/steps);
+        if(current>=steps){
+          weddingAudio.volume=target;
+          clearInterval(musicFadeTimer);
+        }
+      },stepTime);
+    }
+
+    async function startMusic(){
+      try{
+        weddingAudio.volume=0;
+        await weddingAudio.play();
+        fadeAudioTo(.72,1900);
+        musicBtn.classList.add("playing");
+        musicBtn.textContent="❚❚";
+        musicBtn.setAttribute("aria-label","Pause wedding music");
+      }catch(error){
+        musicBtn.classList.remove("playing");
+        musicBtn.textContent="♪";
+      }
+    }
+
+    function openInvitation(){
+      openInvitationBtn.disabled=true;
+      doorPrompt.classList.add("hidden");
+      startMusic();
+      setTimeout(()=>doorScreen.classList.add("open"),180);
+      setTimeout(()=>{
+        document.body.classList.remove("locked");
+        document.body.classList.add("ready");
+      },1550);
+      setTimeout(()=>{
+        doorScreen.remove();
+        doorPrompt.remove();
+      },2850);
+    }
+
+    openInvitationBtn.addEventListener("click",openInvitation);
     document.getElementById("viewInvitation").addEventListener("click",()=>document.getElementById("countdown").scrollIntoView({behavior:"smooth"}));
     const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}}),{threshold:.13,rootMargin:"0px 0px -40px"});document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
     const celebrationDate=new Date("2026-07-28T18:00:00+05:00").getTime();function updateCountdown(){const diff=Math.max(0,celebrationDate-Date.now()),d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);days.textContent=String(d).padStart(2,"0");hours.textContent=String(h).padStart(2,"0");minutes.textContent=String(m).padStart(2,"0");seconds.textContent=String(s).padStart(2,"0")}updateCountdown();setInterval(updateCountdown,1000);
@@ -384,7 +519,23 @@
       const params=new URLSearchParams({action:"TEMPLATE",text:e.title,dates:e.dates,details:e.details,location:e.location,ctz:"Asia/Karachi"});
       link.href="https://calendar.google.com/calendar/render?"+params.toString();
     });
-    document.getElementById("musicBtn").addEventListener("click",()=>alert("Background music will be added later."));
+    musicBtn.addEventListener("click",async()=>{
+      if(weddingAudio.paused){
+        try{
+          await weddingAudio.play();
+          fadeAudioTo(.72,900);
+          musicBtn.classList.add("playing");
+          musicBtn.textContent="❚❚";
+          musicBtn.setAttribute("aria-label","Pause wedding music");
+        }catch(error){}
+      }else{
+        fadeAudioTo(0,450);
+        setTimeout(()=>weddingAudio.pause(),470);
+        musicBtn.classList.remove("playing");
+        musicBtn.textContent="♪";
+        musicBtn.setAttribute("aria-label","Play wedding music");
+      }
+    });
   </script>
 </body>
 </html>
