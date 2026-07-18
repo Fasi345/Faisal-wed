@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#062b24" />
+  <title>Faisal & Zara — Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Naskh+Arabic:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--emerald-950:#010b09;--emerald-850:#021b16;--cream:#f8f1e4;--cream-soft:#e9dfca;--gold:#e7c66f;--gold-2:#cda54d;--line:rgba(231,198,111,.34);--shadow:0 24px 80px rgba(0,0,0,.34);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",system-ui,sans-serif;--arabic:"Noto Naskh Arabic",serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--emerald-950)}body{margin:0;color:var(--cream);font-family:var(--sans);background:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px),radial-gradient(circle at 50% 16%,rgba(231,198,111,.09),transparent 25%),linear-gradient(180deg,#021d18 0%,#010d0b 55%,#000806 100%);background-size:32px 32px,32px 32px,auto,auto;overflow-x:hidden}body.locked{overflow:hidden}a{color:inherit;text-decoration:none}button{font:inherit}
+    .grain,.aurora{position:fixed;inset:0;pointer-events:none;z-index:-1}.grain{opacity:.14;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E")}.aurora{background:radial-gradient(ellipse at 50% 14%,rgba(246,211,112,.11),transparent 26%),radial-gradient(ellipse at 18% 42%,rgba(18,76,58,.10),transparent 34%),radial-gradient(ellipse at 82% 68%,rgba(231,198,111,.055),transparent 30%);filter:blur(12px);animation:auroraFloat 12s ease-in-out infinite alternate}@keyframes auroraFloat{to{transform:translateY(18px) scale(1.03)}}
+    .door-screen{position:fixed;inset:0;z-index:9999;display:grid;grid-template-columns:1fr 1fr;pointer-events:none}.door{position:relative;background:linear-gradient(rgba(231,198,111,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(231,198,111,.08) 1px,transparent 1px),radial-gradient(circle at 50% 45%,rgba(231,198,111,.12),transparent 35%),linear-gradient(180deg,#03241e,#010b09);background-size:28px 28px,28px 28px,auto,auto;box-shadow:inset 0 0 0 1px rgba(231,198,111,.2);transition:transform 1.7s cubic-bezier(.75,0,.12,1)}.door.left{transform-origin:left center}.door.right{transform-origin:right center}.door-screen.open .left{transform:translateX(-102%)}.door-screen.open .right{transform:translateX(102%)}.door-mark{position:absolute;top:50%;width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;transform:translateY(-50%);box-shadow:0 0 24px rgba(231,198,111,.28)}.left .door-mark{right:18px}.right .door-mark{left:18px}
+    .music-btn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:52px;height:52px;border-radius:50%;z-index:80;border:1px solid var(--gold-2);color:var(--gold);background:rgba(1,11,9,.88);backdrop-filter:blur(12px);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .section{position:relative;padding:92px 18px;overflow:hidden}.wrap{width:min(1040px,100%);margin:0 auto}.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding-top:max(42px,env(safe-area-inset-top));padding-bottom:max(44px,env(safe-area-inset-bottom))}.hero::before{content:"";position:absolute;width:min(680px,110vw);height:70%;left:50%;top:5%;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(234,201,111,.14),rgba(234,201,111,.045) 34%,transparent 70%);filter:blur(20px)}.hero-inner{position:relative;z-index:2;width:min(760px,100%);opacity:0;transform:translateY(22px)}body.ready .hero-inner{animation:heroIn 1.2s .75s ease forwards}@keyframes heroIn{to{opacity:1;transform:none}}
+    .star{color:var(--gold);font-size:1.45rem;margin-bottom:22px;text-shadow:0 0 20px rgba(231,198,111,.5)}.bismillah{font-family:var(--arabic);font-size:clamp(1.25rem,4.8vw,2.05rem);line-height:1.35;color:var(--gold);margin:8px auto 14px;text-shadow:0 0 24px rgba(231,198,111,.18)}
+    .hero-stage{
+      position:relative;
+      width:min(780px,100%);
+      min-height:560px;
+      margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      isolation:isolate;
+    }
+    .couple-art{
+      position:absolute;
+      z-index:-1;
+      left:50%;
+      bottom:-22px;
+      width:min(850px,138vw);
+      max-width:none;
+      transform:translateX(-50%);
+      pointer-events:none;
+      user-select:none;
+      filter:drop-shadow(0 24px 32px rgba(0,0,0,.42));
+      opacity:.98;
+      animation:coupleFloat 5.5s ease-in-out infinite alternate;
+    }
+    .hero-stage::after{
+      content:"";
+      position:absolute;
+      z-index:-2;
+      inset:8% -12% 3%;
+      background:radial-gradient(ellipse at 50% 48%,rgba(231,198,111,.15),rgba(231,198,111,.045) 37%,transparent 70%);
+      filter:blur(22px);
+      pointer-events:none;
+    }
+    @keyframes coupleFloat{
+      to{transform:translateX(-50%) translateY(-4px)}
+    }
+    .hero-stage .bismillah,
+    .hero-stage .eyebrow,
+    .hero-stage .names,
+    .hero-stage .invite-copy,
+    .hero-stage .primary-btn{
+      position:relative;
+      z-index:2;
+    }
+    .hero-stage .bismillah{margin-top:0}
+    .hero-stage .names{
+      text-shadow:
+        0 3px 0 rgba(3,20,16,.24),
+        0 14px 42px rgba(0,0,0,.55);
+    }
+    .hero-stage .invite-copy{
+      padding:4px 12px;
+      text-shadow:0 3px 14px rgba(0,0,0,.85);
+    }
+.eyebrow{margin:0 0 14px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}.names{font-family:var(--serif);font-size:clamp(4.6rem,21vw,8.8rem);line-height:.74;margin:28px 0 12px;font-weight:600;letter-spacing:-.055em;text-shadow:0 12px 40px rgba(0,0,0,.24)}.amp{display:block;color:var(--gold);font-size:.54em;line-height:1;margin:14px 0}.invite-copy{font-family:var(--serif);font-size:clamp(1.28rem,5vw,1.7rem);line-height:1.45;color:var(--cream-soft);max-width:560px;margin:28px auto}.primary-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:210px;padding:15px 26px;border-radius:999px;border:0;cursor:pointer;font-weight:600;color:#0a2c25;background:linear-gradient(110deg,#f2d98e,#d9b65d,#f4dc91);box-shadow:0 14px 36px rgba(221,183,86,.2),inset 0 1px rgba(255,255,255,.55);transition:.25s ease}.primary-btn:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(221,183,86,.28)}
+    .section-title{font-family:var(--serif);font-size:clamp(3rem,12vw,5.5rem);line-height:.9;margin:8px 0 38px;text-align:center}.kicker{text-align:center;color:var(--gold);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}.events-grid{display:grid;gap:18px}.event-card{position:relative;border:1px solid var(--line);border-radius:26px;padding:26px 22px;background:radial-gradient(circle at 90% 5%,rgba(231,198,111,.12),transparent 24%),linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.03));box-shadow:var(--shadow);backdrop-filter:blur(10px)}.event-label{color:var(--gold);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}.event-date{font-family:var(--serif);font-size:2.05rem;line-height:1.05;margin:8px 0 18px}.event-row{display:grid;grid-template-columns:90px 1fr;gap:14px;padding:13px 0;border-top:1px solid rgba(231,198,111,.24)}.event-row span:first-child{font-size:.68rem;letter-spacing:.13em;color:var(--gold);text-transform:uppercase}.event-row strong{font-size:.92rem;line-height:1.45}.card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.ghost-btn{flex:1;min-width:130px;text-align:center;border:1px solid var(--gold-2);border-radius:999px;padding:12px 15px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(3,27,23,.28);color:var(--gold)}
+    .countdown{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:700px;margin:0 auto}.time-box{text-align:center;border:1px solid var(--line);border-radius:22px;padding:22px 8px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025))}.time-box b{display:block;font-family:var(--serif);font-size:2.8rem;color:var(--gold)}.time-box span{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-soft)}
+    .family-card,.memorial-card{border:1px solid var(--line);border-radius:28px;padding:30px 22px;text-align:center;background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.02));box-shadow:var(--shadow)}.family-names{display:grid;gap:12px;margin-top:22px}.family-name{font-family:var(--serif);font-size:1.35rem;padding:13px;border-bottom:1px solid rgba(231,198,111,.18)}.memorial-photo{width:180px;aspect-ratio:4/5;border-radius:18px;margin:0 auto 22px;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold);background:radial-gradient(circle at 50% 30%,rgba(231,198,111,.14),transparent 40%),rgba(255,255,255,.035);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase}.memorial-name{font-family:var(--serif);font-size:2.6rem;margin:8px 0;color:var(--gold)}.memorial-text{max-width:560px;margin:0 auto;color:var(--cream-soft);line-height:1.75}.closing{text-align:center;padding-bottom:130px}.closing p{font-family:var(--serif);font-size:1.55rem;line-height:1.55;color:var(--cream-soft)}.reveal{opacity:0;transform:translateY(34px);filter:blur(7px);transition:opacity .9s ease,transform .9s ease,filter .9s ease}.reveal.visible{opacity:1;transform:none;filter:none}
+    @media(min-width:760px){.hero-stage{min-height:650px}.couple-art{width:min(900px,100vw);bottom:-42px}.section{padding:120px 28px}.events-grid{grid-template-columns:repeat(3,1fr)}.countdown{grid-template-columns:repeat(4,1fr)}.names{font-size:8.4rem}.event-card{padding:30px}}@media(max-width:390px){.hero-stage{min-height:525px}.couple-art{width:148vw;bottom:-8px}.section{padding-left:14px;padding-right:14px}.names{font-size:4.25rem}.event-row{grid-template-columns:78px 1fr}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body class="locked">
+  <div class="grain"></div><div class="aurora"></div>
+  <div class="door-screen" id="doorScreen" aria-hidden="true"><div class="door left"><span class="door-mark"></span></div><div class="door right"><span class="door-mark"></span></div></div>
+  <button class="music-btn" id="musicBtn" aria-label="Music will be added later" title="Music will be added later">♪</button>
+  <main>
+    <section class="section hero" id="home"><div class="hero-inner"><div class="star">✦</div>
+      <div class="hero-stage">
+        <img
+          class="couple-art"
+          src="assets/faisal-zara-couple.png"
+          alt="Illustration of a bride and groom holding hands"
+        />
+        <div class="bismillah" dir="rtl" lang="ar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+        <p class="eyebrow">Together with their families</p>
+        <h1 class="names">Faisal<span class="amp">&amp;</span>Zara</h1>
+        <p class="invite-copy">request the pleasure of your company at their wedding celebrations</p>
+        <button class="primary-btn" id="viewInvitation">View Invitation ↓</button>
+      </div>
+      </div></section>
+    <section class="section" id="events"><div class="wrap"><p class="kicker reveal">Wedding Events</p><h2 class="section-title reveal">Join Us</h2><div class="events-grid">
+      <article class="event-card reveal"><div class="event-label">Mehndi</div><h3 class="event-date">Tuesday, 28 July 2026</h3><div class="event-row"><span>Time</span><strong>Evening</strong></div><div class="event-row"><span>Venue</span><strong>Taj Marquee, Jhelum</strong></div><div class="card-actions"><a class="ghost-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Taj+Marquee+4A+Civil+Line+Professor+Colony+Gulshan+Town+Jhelum">View Location</a><a class="ghost-btn calendar-btn" data-event="mehndi" target="_blank" rel="noopener">Add to Calendar</a></div></article>
+      <article class="event-card reveal"><div class="event-label">Barat</div><h3 class="event-date">Thursday, 30 July 2026</h3><div class="event-row"><span>Time</span><strong>7:00 PM</strong></div><div class="event-row"><span>Venue</span><strong>Jaber Marquee, Mirpur</strong></div><div class="card-actions"><a class="ghost-btn" target="_blank" rel="noopener" href="https://share.google/T3lu3ahcbVa7CT6jc">View Location</a><a class="ghost-btn calendar-btn" data-event="barat" target="_blank" rel="noopener">Add to Calendar</a></div></article>
+      <article class="event-card reveal"><div class="event-label">Walima</div><h3 class="event-date">Friday, 31 July 2026</h3><div class="event-row"><span>Time</span><strong>7:00 PM</strong></div><div class="event-row"><span>Venue</span><strong>Taj Palace, Jhelum</strong></div><div class="card-actions"><a class="ghost-btn" target="_blank" rel="noopener" href="https://share.google/Cju5awqMiC3Y7Lajw">View Location</a><a class="ghost-btn calendar-btn" data-event="walima" target="_blank" rel="noopener">Add to Calendar</a></div></article>
+    </div></div></section>
+    <section class="section" id="countdown"><div class="wrap"><p class="kicker reveal">The Celebration Begins In</p><h2 class="section-title reveal">Barat Countdown</h2><div class="countdown reveal"><div class="time-box"><b id="days">00</b><span>Days</span></div><div class="time-box"><b id="hours">00</b><span>Hours</span></div><div class="time-box"><b id="minutes">00</b><span>Minutes</span></div><div class="time-box"><b id="seconds">00</b><span>Seconds</span></div></div></div></section>
+    <section class="section" id="family"><div class="wrap"><div class="family-card reveal"><p class="kicker">Waiting Eyes</p><h2 class="section-title" style="font-size:clamp(2.7rem,10vw,4.7rem);margin-bottom:12px">Our Family</h2><p style="color:var(--cream-soft);margin-top:0">We look forward to celebrating with you</p><div class="family-names"><div class="family-name">Mr. &amp; Mrs. Naseer Ahmed</div><div class="family-name">Mr. &amp; Mrs. Zamir Ahmed</div><div class="family-name">Mr. &amp; Mrs. Toqeer</div><div class="family-name">Mr. &amp; Mrs. Tanveer Ahmed</div><div class="family-name">Mr. &amp; Mrs. Zaheer Ahmed <span style="color:var(--gold);font-size:.85em">(Late)</span></div></div></div></div></section>
+    <section class="section" id="memorial"><div class="wrap"><div class="memorial-card reveal"><div class="memorial-photo">Photo coming later</div><p class="kicker">In Loving Memory Of</p><h2 class="memorial-name">Ustad Zaheer</h2><p class="memorial-text">Your love, guidance and cherished memories remain forever in our hearts and prayers. You may not be with us in person, but your presence will always be felt in every moment of this celebration.</p></div></div></section>
+    <section class="section closing"><div class="wrap reveal"><div class="star">✦</div><p>Your presence and prayers will make our celebration truly special.</p><h2 class="section-title" style="font-size:clamp(3rem,13vw,5.8rem);margin-bottom:0">Faisal &amp; Zara</h2></div></section>
+  </main>
+  <script>
+    window.addEventListener("load",()=>{const d=document.getElementById("doorScreen");setTimeout(()=>d.classList.add("open"),350);setTimeout(()=>{document.body.classList.remove("locked");document.body.classList.add("ready");d.remove()},2150)});
+    document.getElementById("viewInvitation").addEventListener("click",()=>document.getElementById("events").scrollIntoView({behavior:"smooth"}));
+    const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}}),{threshold:.13,rootMargin:"0px 0px -40px"});document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+    const baratDate=new Date("2026-07-30T19:00:00+05:00").getTime();function updateCountdown(){const diff=Math.max(0,baratDate-Date.now()),d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);days.textContent=String(d).padStart(2,"0");hours.textContent=String(h).padStart(2,"0");minutes.textContent=String(m).padStart(2,"0");seconds.textContent=String(s).padStart(2,"0")}updateCountdown();setInterval(updateCountdown,1000);
+    const calendarEvents={
+      mehndi:{title:"Faisal & Zara — Mehndi",dates:"20260728/20260729",location:"Taj Marquee, Jhelum",details:"You are invited to the Mehndi celebration of Faisal & Zara."},
+      barat:{title:"Faisal & Zara — Barat",dates:"20260730T190000/20260730T230000",location:"Jaber Marquee, Mirpur",details:"You are invited to the Barat celebration of Faisal & Zara."},
+      walima:{title:"Faisal & Zara — Walima",dates:"20260731T190000/20260731T230000",location:"Taj Palace, Jhelum",details:"You are invited to the Walima celebration of Faisal & Zara."}
+    };
+    document.querySelectorAll(".calendar-btn").forEach(link=>{
+      const e=calendarEvents[link.dataset.event];
+      const params=new URLSearchParams({action:"TEMPLATE",text:e.title,dates:e.dates,details:e.details,location:e.location,ctz:"Asia/Karachi"});
+      link.href="https://calendar.google.com/calendar/render?"+params.toString();
+    });
+    document.getElementById("musicBtn").addEventListener("click",()=>alert("Background music will be added later."));
+  </script>
+</body>
+</html>
