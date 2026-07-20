@@ -81,14 +81,13 @@
     @media(max-width:520px){
       .door::before{inset:12px;border-radius:16px}
       .door-initial{
+        font-size:clamp(4.6rem,24vw,6.4rem);
         text-shadow:
           0 1px 0 rgba(255,247,214,.3),
           0 2px 3px rgba(0,0,0,.72);
       }
-      .door-word{
-        font-size:clamp(1.12rem,5.8vw,1.65rem);
-        letter-spacing:.035em;
-      }
+      .left .door-initial,
+      .right .door-initial{transform:translateX(0) translateZ(0)}
     }
     .music-btn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:52px;height:52px;border-radius:50%;z-index:80;border:1px solid var(--gold-2);color:var(--gold);background:rgba(1,11,9,.88);backdrop-filter:blur(12px);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.25)}
     .section{position:relative;padding:92px 18px;overflow:hidden}.wrap{width:min(1040px,100%);margin:0 auto}.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding-top:max(42px,env(safe-area-inset-top));padding-bottom:max(44px,env(safe-area-inset-bottom))}.hero::before{content:"";position:absolute;width:min(680px,110vw);height:70%;left:50%;top:5%;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(234,201,111,.14),rgba(234,201,111,.045) 34%,transparent 70%);filter:blur(20px)}.hero-inner{position:relative;z-index:2;width:min(760px,100%);opacity:1}
@@ -195,7 +194,8 @@
 .eyebrow{margin:0 0 14px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}.names{font-family:var(--serif);font-size:clamp(4.6rem,21vw,8.8rem);line-height:.74;margin:28px 0 12px;font-weight:600;letter-spacing:-.055em;text-shadow:0 12px 40px rgba(0,0,0,.24)}.amp{display:block;color:var(--gold);font-size:.54em;line-height:1;margin:14px 0}.invite-copy{font-family:var(--serif);font-size:clamp(1.28rem,5vw,1.7rem);line-height:1.45;color:var(--cream-soft);max-width:560px;margin:28px auto}.primary-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:210px;padding:15px 26px;border-radius:999px;border:0;cursor:pointer;font-weight:600;color:#0a2c25;background:linear-gradient(110deg,#f2d98e,#d9b65d,#f4dc91);box-shadow:0 14px 36px rgba(221,183,86,.2),inset 0 1px rgba(255,255,255,.55);transition:.25s ease}.primary-btn:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(221,183,86,.28)}
     .section-title{font-family:var(--serif);font-size:clamp(3rem,12vw,5.5rem);line-height:.9;margin:8px 0 38px;text-align:center}.kicker{text-align:center;color:var(--gold);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}.events-grid{display:grid;gap:18px}.event-card{position:relative;border:1px solid var(--line);border-radius:26px;padding:26px 22px;background:radial-gradient(circle at 90% 5%,rgba(231,198,111,.12),transparent 24%),linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.03));box-shadow:var(--shadow);backdrop-filter:blur(10px)}.event-label{color:var(--gold);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}.event-date{font-family:var(--serif);font-size:2.05rem;line-height:1.05;margin:8px 0 18px}.event-row{display:grid;grid-template-columns:90px 1fr;gap:14px;padding:13px 0;border-top:1px solid rgba(231,198,111,.24)}.event-row span:first-child{font-size:.68rem;letter-spacing:.13em;color:var(--gold);text-transform:uppercase}.event-row strong{font-size:.92rem;line-height:1.45}.card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.ghost-btn{flex:1;min-width:130px;text-align:center;border:1px solid var(--gold-2);border-radius:999px;padding:12px 15px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(3,27,23,.28);color:var(--gold)}
     .countdown{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:700px;margin:0 auto}.time-box{text-align:center;border:1px solid var(--line);border-radius:22px;padding:22px 8px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025))}.time-box b{display:block;font-family:var(--serif);font-size:2.8rem;color:var(--gold)}.time-box span{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-soft)}
-    .family-card,.memorial-card{border:1px solid var(--line);border-radius:28px;padding:30px 22px;text-align:center;background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.02));box-shadow:var(--shadow)}.family-names{display:grid;gap:12px;margin-top:22px}.family-name{font-family:var(--serif);font-size:1.35rem;padding:13px;border-bottom:1px solid rgba(231,198,111,.18)}.memorial-photo{width:180px;aspect-ratio:4/5;border-radius:18px;margin:0 auto 22px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;color:var(--gold);background:radial-gradient(circle at 50% 30%,rgba(231,198,111,.14),transparent 40%),rgba(255,255,255,.035);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 18px 45px rgba(0,0,0,.34)}.memorial-photo img{width:100%;height:100%;object-fit:contain;display:block;background:#071712;padding:6px}.memorial-photo.empty::after{content:"Add ustad-zaheer.jpg";padding:18px;text-align:center;line-height:1.55}.memorial-name{font-family:var(--serif);font-size:2.6rem;margin:8px 0;color:var(--gold)}.memorial-text{max-width:560px;margin:0 auto;color:var(--cream-soft);line-height:1.75}.closing{text-align:center;padding-bottom:130px}.closing p{font-family:var(--serif);font-size:1.55rem;line-height:1.55;color:var(--cream-soft)}.reveal{opacity:0;transform:translateY(34px);filter:blur(7px);transition:opacity .9s ease,transform .9s ease,filter .9s ease}.reveal.visible{opacity:1;transform:none;filter:none}
+    .waiting-eyes-title{font-size:clamp(3.6rem,13vw,6.4rem)!important;line-height:.92;margin:0 0 28px!important;color:var(--gold);text-shadow:0 0 24px rgba(231,198,111,.14)}
+    .family-card,.memorial-card{border:1px solid var(--line);border-radius:28px;padding:30px 22px;text-align:center;background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.02));box-shadow:var(--shadow)}.family-names{display:grid;gap:12px;margin-top:22px}.family-name{font-family:var(--serif);font-size:1.35rem;padding:13px;border-bottom:1px solid rgba(231,198,111,.18)}.memorial-photo{width:180px;aspect-ratio:4/5;border-radius:18px;margin:0 auto 22px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;color:var(--gold);background:radial-gradient(circle at 50% 30%,rgba(231,198,111,.14),transparent 40%),rgba(255,255,255,.035);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 18px 45px rgba(0,0,0,.34)}.memorial-photo img{width:100%;height:100%;object-fit:contain;display:block;background:#020d0b}.memorial-photo.empty::after{content:"Add ustad-zaheer.jpg";padding:18px;text-align:center;line-height:1.55}.memorial-name{font-family:var(--serif);font-size:2.6rem;margin:8px 0;color:var(--gold)}.memorial-text{max-width:560px;margin:0 auto;color:var(--cream-soft);line-height:1.75}.closing{text-align:center;padding-bottom:130px}.closing p{font-family:var(--serif);font-size:1.55rem;line-height:1.55;color:var(--cream-soft)}.reveal{opacity:0;transform:translateY(34px);filter:blur(7px);transition:opacity .9s ease,transform .9s ease,filter .9s ease}.reveal.visible{opacity:1;transform:none;filter:none}
     @media(min-width:760px){.hero-stage{min-height:680px}.couple-art{height:660px;bottom:4px}.section{padding:120px 28px}.events-grid{grid-template-columns:repeat(2,1fr)}.countdown{grid-template-columns:repeat(4,1fr)}.names{font-size:8.4rem}.event-card{padding:30px}}@media(min-width:1120px){.events-grid{grid-template-columns:repeat(3,1fr)}.events-grid .event-card:nth-child(4){grid-column:1/2}.events-grid .event-card:nth-child(5){grid-column:2/3}}
     @media(max-width:390px){.hero-stage{min-height:590px}.couple-art{height:570px;bottom:0}.section{padding-left:14px;padding-right:14px}.names{font-size:4.25rem}.event-row{grid-template-columns:78px 1fr}}
     /* Mobile hero alignment: keep the headings clear of the faces and
@@ -354,6 +354,7 @@
     }
     .open-invitation-btn{
       position:relative;
+      animation:openButtonBounce 1.8s ease-in-out infinite;
       min-width:230px;
       padding:15px 30px;
       border-radius:999px;
@@ -371,11 +372,6 @@
         0 0 28px rgba(231,198,111,.2),
         inset 0 1px rgba(255,255,255,.74);
       overflow:hidden;
-      animation:inviteBounce 1.55s ease-in-out infinite;
-    }
-    @keyframes inviteBounce{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-8px)}
     }
     .open-invitation-btn::before{
       content:"";
@@ -385,6 +381,11 @@
       transform:translateX(-135%);
       animation:doorButtonSheen 3.8s 1s ease-in-out infinite;
     }
+    @keyframes openButtonBounce{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-7px)}
+    }
+
     @keyframes doorButtonSheen{
       0%,62%,100%{transform:translateX(-135%)}
       82%{transform:translateX(135%)}
@@ -418,7 +419,7 @@
 </head>
 <body class="locked">
   <div class="grain"></div><div class="aurora"></div>
-  <div class="door-screen" id="doorScreen" aria-hidden="true"><div class="door left"><span class="door-initial door-word">Wedding</span><span class="door-mark"></span></div><div class="door right"><span class="door-initial door-word">Invitation</span><span class="door-mark"></span></div></div>
+  <div class="door-screen" id="doorScreen" aria-hidden="true"><div class="door left"><span class="door-initial">F</span><span class="door-mark"></span></div><div class="door right"><span class="door-initial">Z</span><span class="door-mark"></span></div></div>
   <div class="door-prompt" id="doorPrompt">
     <button class="open-invitation-btn" id="openInvitationBtn">Open Invitation</button>
     <small>Tap to open with music</small>
@@ -452,7 +453,7 @@
       <article class="event-card reveal"><div class="event-label">Barat</div><h3 class="event-date">Thursday, 30 July 2026</h3><div class="event-row"><span>Time</span><strong>7:00 PM</strong></div><div class="event-row"><span>Venue</span><strong>Amar Palace, Mirpur</strong></div><div class="card-actions"><a class="ghost-btn" target="_blank" rel="noopener" href="https://share.google/K6mQtkw7MRY8TPV0L">View Location</a><a class="ghost-btn calendar-btn" data-event="barat" target="_blank" rel="noopener">Add to Calendar</a></div></article>
       <article class="event-card reveal"><div class="event-label">Walima</div><h3 class="event-date">Friday, 31 July 2026</h3><div class="event-row"><span>Time</span><strong>7:00 PM</strong></div><div class="event-row"><span>Venue</span><strong>Taj Palace, Jhelum</strong></div><div class="card-actions"><a class="ghost-btn" target="_blank" rel="noopener" href="https://share.google/Cju5awqMiC3Y7Lajw">View Location</a><a class="ghost-btn calendar-btn" data-event="walima" target="_blank" rel="noopener">Add to Calendar</a></div></article>
     </div></div></section>
-    <section class="section" id="family"><div class="wrap"><div class="family-card reveal"><h2 class="section-title" style="font-size:clamp(4rem,15vw,7rem);margin-bottom:26px;letter-spacing:.04em;text-transform:uppercase">Waiting Eyes</h2><div class="family-names"><div class="family-name">Mr. &amp; Mrs. Naseer</div><div class="family-name">Mr. &amp; Mrs. Zaheer Ahmed <span style="color:var(--gold);font-size:.85em">(Late)</span></div><div class="family-name">Mr. &amp; Mrs. Zamir Ahmed</div><div class="family-name">Mr. &amp; Mrs. Toqeer Akhter</div><div class="family-name">Mr. &amp; Mrs. Tanveer Husain</div></div></div></div></section>
+    <section class="section" id="family"><div class="wrap"><div class="family-card reveal"><h2 class="section-title waiting-eyes-title">Waiting Eyes</h2><div class="family-names"><div class="family-name">Mr. &amp; Mrs. Naseer</div><div class="family-name">Mr. &amp; Mrs. Zaheer Ahmed <span style="color:var(--gold);font-size:.85em">(Late)</span></div><div class="family-name">Mr. &amp; Mrs. Zamir Ahmed</div><div class="family-name">Mr. &amp; Mrs. Toqeer Akhter</div><div class="family-name">Mr. &amp; Mrs. Tanveer Husain</div></div></div></div></section>
     <section class="section" id="memorial"><div class="wrap"><div class="memorial-card reveal"><div class="memorial-photo"><img src="ustad-zaheer.jpg" alt="Ustad Zaheer" onerror="this.style.display='none';this.parentElement.classList.add('empty')"></div><p class="kicker">In Loving Memory Of</p><h2 class="memorial-name">Ustad Zaheer</h2><p class="memorial-text">Your love, guidance and cherished memories remain forever in our hearts and prayers. You may not be with us in person, but your presence will always be felt in every moment of this celebration.</p></div></div></section>
     <section class="section closing"><div class="wrap reveal"><div class="star">✦</div><p>Your presence and prayers will make our celebration truly special.</p><h2 class="section-title" style="font-size:clamp(3rem,13vw,5.8rem);margin-bottom:0">Faisal &amp; Zara</h2></div></section>
   </main>
