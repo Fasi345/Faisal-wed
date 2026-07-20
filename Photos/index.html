@@ -2,123 +2,394 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#062b24" />
   <title>Find Your Photos | Faisal & Zara</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: "Poppins", sans-serif;
+    :root{
+      --emerald-950:#010b09;
+      --emerald-850:#021b16;
+      --cream:#f8f1e4;
+      --cream-soft:#e9dfca;
+      --gold:#e7c66f;
+      --gold-2:#cda54d;
+      --line:rgba(231,198,111,.34);
+      --serif:"Cormorant Garamond",Georgia,serif;
+      --sans:"Inter",system-ui,sans-serif;
+    }
+
+    *{box-sizing:border-box}
+
+    html{
+      min-height:100%;
+      background:var(--emerald-950);
     }
 
     body{
-      min-height:100vh;
+      min-height:100svh;
+      margin:0;
+      color:var(--cream);
+      font-family:var(--sans);
+      background:
+        linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px),
+        radial-gradient(circle at 50% 16%,rgba(231,198,111,.09),transparent 25%),
+        linear-gradient(180deg,#021d18 0%,#010d0b 58%,#000806 100%);
+      background-size:32px 32px,32px 32px,auto,auto;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+
+    .grain,
+    .aurora{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .grain{
+      opacity:.14;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitchTiles'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+    }
+
+    .aurora{
+      background:
+        radial-gradient(ellipse at 50% 12%,rgba(246,211,112,.13),transparent 28%),
+        radial-gradient(ellipse at 18% 48%,rgba(18,76,58,.14),transparent 36%),
+        radial-gradient(ellipse at 82% 70%,rgba(231,198,111,.07),transparent 32%);
+      filter:blur(12px);
+      animation:auroraFloat 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes auroraFloat{
+      to{transform:translateY(18px) scale(1.03)}
+    }
+
+    main{
+      position:relative;
+      z-index:1;
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      padding:
+        max(32px,env(safe-area-inset-top))
+        18px
+        max(40px,env(safe-area-inset-bottom));
+    }
+
+    .photo-stage{
+      position:relative;
+      width:min(760px,100%);
+      min-height:min(780px,calc(100svh - 72px));
       display:flex;
       align-items:center;
       justify-content:center;
-      background:linear-gradient(135deg,#0f3b2e,#154734,#1e5b46);
-      color:#fff;
       text-align:center;
-      padding:30px;
+      isolation:isolate;
     }
 
-    .card{
-      max-width:650px;
+    .photo-stage::before{
+      content:"";
+      position:absolute;
+      inset:4% -8%;
+      z-index:-2;
+      background:
+        radial-gradient(ellipse at 50% 45%,rgba(231,198,111,.14),rgba(231,198,111,.045) 38%,transparent 72%);
+      filter:blur(22px);
+    }
+
+    .frame{
+      position:relative;
       width:100%;
-      background:rgba(255,255,255,.08);
-      backdrop-filter:blur(14px);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:24px;
-      padding:50px 35px;
-      box-shadow:0 25px 60px rgba(0,0,0,.35);
+      padding:72px 36px 62px;
+      border:1px solid var(--line);
+      border-radius:30px;
+      background:
+        radial-gradient(circle at 90% 5%,rgba(231,198,111,.12),transparent 24%),
+        linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+      backdrop-filter:blur(12px);
+      box-shadow:0 24px 80px rgba(0,0,0,.34);
+      overflow:hidden;
+      opacity:0;
+      transform:translateY(28px);
+      animation:reveal 1.1s .15s ease forwards;
     }
 
-    .icon{
-      font-size:64px;
-      margin-bottom:20px;
+    .frame::before{
+      content:"";
+      position:absolute;
+      inset:16px;
+      border:1px solid rgba(231,198,111,.20);
+      border-radius:22px;
+      pointer-events:none;
+    }
+
+    .frame::after{
+      content:"";
+      position:absolute;
+      left:12%;
+      right:12%;
+      top:0;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold),transparent);
+      opacity:.75;
+    }
+
+    @keyframes reveal{
+      to{
+        opacity:1;
+        transform:none;
+      }
+    }
+
+    .monogram{
+      width:82px;
+      height:82px;
+      margin:0 auto 24px;
+      border:1px solid var(--gold-2);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-family:var(--serif);
+      font-size:2rem;
+      color:var(--gold);
+      background:rgba(1,11,9,.42);
+      box-shadow:
+        0 0 0 8px rgba(231,198,111,.035),
+        0 0 28px rgba(231,198,111,.12);
+    }
+
+    .star{
+      color:var(--gold);
+      font-size:1.45rem;
+      margin-bottom:16px;
+      text-shadow:0 0 20px rgba(231,198,111,.5);
+    }
+
+    .kicker{
+      margin:0 0 14px;
+      color:var(--gold);
+      font-size:.72rem;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      font-weight:600;
     }
 
     h1{
-      font-size:42px;
-      margin-bottom:10px;
-      color:#f3d27b;
+      margin:0;
+      font-family:var(--serif);
+      font-size:clamp(3.7rem,12vw,6.8rem);
+      line-height:.9;
+      font-weight:600;
+      letter-spacing:-.045em;
+      text-shadow:0 12px 40px rgba(0,0,0,.3);
     }
 
     h2{
-      font-size:24px;
-      font-weight:500;
-      margin-bottom:25px;
+      margin:24px 0 28px;
+      font-family:var(--serif);
+      font-size:clamp(1.8rem,6vw,2.5rem);
+      font-weight:600;
+      color:var(--gold);
     }
 
-    p{
-      font-size:18px;
-      line-height:1.8;
-      color:#f3f3f3;
-      margin-bottom:18px;
+    .copy{
+      max-width:580px;
+      margin:0 auto;
+      color:var(--cream-soft);
+      font-family:var(--serif);
+      font-size:clamp(1.22rem,4vw,1.55rem);
+      line-height:1.65;
     }
 
-    .footer{
-      margin-top:35px;
-      color:#d8d8d8;
-      font-size:17px;
+    .copy p{
+      margin:0 0 18px;
     }
 
-    .btn{
-      display:inline-block;
-      margin-top:25px;
-      padding:15px 34px;
-      text-decoration:none;
-      border-radius:50px;
-      background:#d4af37;
-      color:#163c2f;
+    .primary-btn{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:230px;
+      margin-top:26px;
+      padding:16px 30px;
+      border-radius:999px;
+      border:1px solid rgba(255,238,180,.38);
+      color:#0a2c25;
+      background:linear-gradient(110deg,#f2d98e,#d9b65d,#f4dc91);
       font-weight:700;
-      transition:.3s;
+      box-shadow:
+        0 14px 38px rgba(221,183,86,.25),
+        inset 0 1px rgba(255,255,255,.72),
+        inset 0 -8px 18px rgba(139,91,20,.12);
+      overflow:hidden;
+      isolation:isolate;
+      transition:.25s ease;
     }
 
-    .btn:hover{
-      transform:translateY(-3px);
-      background:#f3d27b;
+    .primary-btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(110deg,transparent 24%,rgba(255,255,255,.42) 48%,transparent 72%);
+      transform:translateX(-130%);
+      animation:buttonSheen 5.8s 2s ease-in-out infinite;
+    }
+
+    .primary-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 44px rgba(221,183,86,.28);
+    }
+
+    @keyframes buttonSheen{
+      0%,72%,100%{transform:translateX(-130%)}
+      86%{transform:translateX(130%)}
+    }
+
+    .signature{
+      margin-top:36px;
+      font-family:var(--serif);
+      font-size:1.55rem;
+      color:var(--cream-soft);
+    }
+
+    .music-btn{
+      position:fixed;
+      right:16px;
+      bottom:calc(16px + env(safe-area-inset-bottom));
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      z-index:20;
+      border:1px solid var(--gold-2);
+      color:var(--gold);
+      background:rgba(1,11,9,.88);
+      backdrop-filter:blur(12px);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .music-btn.playing{
+      color:#102a23;
+      background:linear-gradient(135deg,#f8dfa0,#c9973d);
+      box-shadow:
+        0 0 0 7px rgba(231,198,111,.08),
+        0 12px 34px rgba(0,0,0,.32),
+        0 0 24px rgba(231,198,111,.28);
+      animation:musicPulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes musicPulse{
+      50%{transform:scale(1.06)}
     }
 
     @media(max-width:600px){
-      h1{font-size:32px;}
-      h2{font-size:20px;}
-      p{font-size:16px;}
-      .card{padding:40px 25px;}
+      main{padding-left:14px;padding-right:14px}
+      .photo-stage{min-height:calc(100svh - 48px)}
+      .frame{padding:54px 22px 48px;border-radius:26px}
+      .frame::before{inset:11px;border-radius:18px}
+      .monogram{width:70px;height:70px;font-size:1.75rem}
+      h1{font-size:clamp(3.35rem,17vw,5rem)}
+      .copy{font-size:1.18rem}
+      .primary-btn{min-width:220px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+      }
     }
   </style>
 </head>
+
 <body>
+  <div class="grain"></div>
+  <div class="aurora"></div>
 
-<div class="card">
+  <audio id="weddingAudio" preload="auto" loop>
+    <source src="../wedding-music.mp3" type="audio/mpeg">
+  </audio>
 
-    <div class="icon">📸</div>
+  <button class="music-btn" id="musicBtn" aria-label="Play wedding music" title="Play or pause music">♪</button>
 
-    <h1>Find Your Photos</h1>
+  <main>
+    <section class="photo-stage">
+      <div class="frame">
+        <div class="monogram">FZ</div>
+        <div class="star">✦</div>
+        <p class="kicker">Wedding Memories</p>
 
-    <h2>Coming Soon</h2>
+        <h1>Find Your Photos</h1>
+        <h2>Coming Soon</h2>
 
-    <p>
-      Our AI-powered photo finder will be available on the day of the wedding.
-    </p>
+        <div class="copy">
+          <p>Our AI-powered photo finder will be available on the day of the wedding.</p>
+          <p>Once the celebrations begin, you'll be able to search for every photo you're in and receive your memories the same day.</p>
+          <p>We look forward to sharing these special moments with you.</p>
+        </div>
 
-    <p>
-      Once the celebrations begin, you'll be able to search for every photo you're in and receive your memories the same day.
-    </p>
+        <a href="/" class="primary-btn">Back to Invitation</a>
 
-    <p>
-      We look forward to sharing these special moments with you.
-    </p>
+        <div class="signature">— Faisal &amp; Zara</div>
+      </div>
+    </section>
+  </main>
 
-    <a href="/" class="btn">Back to Invitation</a>
+  <script>
+    const weddingAudio = document.getElementById("weddingAudio");
+    const musicBtn = document.getElementById("musicBtn");
+    let fadeTimer = null;
 
-    <div class="footer">
-      — Faisal &amp; Zara
-    </div>
+    function fadeAudioTo(target, duration = 900){
+      clearInterval(fadeTimer);
+      const start = weddingAudio.volume;
+      const steps = 24;
+      const stepTime = Math.max(30, duration / steps);
+      let current = 0;
 
-</div>
+      fadeTimer = setInterval(() => {
+        current++;
+        weddingAudio.volume = start + (target - start) * (current / steps);
 
+        if(current >= steps){
+          weddingAudio.volume = target;
+          clearInterval(fadeTimer);
+        }
+      }, stepTime);
+    }
+
+    musicBtn.addEventListener("click", async () => {
+      if(weddingAudio.paused){
+        try{
+          weddingAudio.volume = 0;
+          await weddingAudio.play();
+          fadeAudioTo(.72, 900);
+          musicBtn.classList.add("playing");
+          musicBtn.textContent = "❚❚";
+          musicBtn.setAttribute("aria-label", "Pause wedding music");
+        }catch(error){}
+      }else{
+        fadeAudioTo(0, 450);
+        setTimeout(() => weddingAudio.pause(), 470);
+        musicBtn.classList.remove("playing");
+        musicBtn.textContent = "♪";
+        musicBtn.setAttribute("aria-label", "Play wedding music");
+      }
+    });
+  </script>
 </body>
 </html>
