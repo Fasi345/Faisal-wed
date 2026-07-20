@@ -435,7 +435,79 @@
       .open-invitation-btn{min-width:210px;padding:14px 25px;font-size:.84rem}
       .door-prompt small{font-size:.68rem}
     }
+.photo-finder-card{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:42px 24px;
+  text-align:center;
+  background:
+    radial-gradient(circle at 90% 5%,rgba(231,198,111,.12),transparent 24%),
+    linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(10px);
+  overflow:hidden;
+}
 
+.photo-finder-card::before{
+  content:"";
+  position:absolute;
+  left:12%;
+  right:12%;
+  top:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.8;
+}
+
+.photo-icon{
+  width:78px;
+  height:78px;
+  margin:0 auto 22px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--gold-2);
+  color:var(--gold);
+  font-size:2rem;
+  background:rgba(1,11,9,.42);
+  box-shadow:
+    0 0 0 8px rgba(231,198,111,.04),
+    0 0 28px rgba(231,198,111,.14);
+}
+
+.photo-finder-title{
+  margin:12px 0 18px;
+  font-family:var(--serif);
+  font-size:clamp(3rem,11vw,5.2rem);
+  line-height:.92;
+  font-weight:600;
+}
+
+.photo-finder-text{
+  max-width:620px;
+  margin:0 auto;
+  color:var(--cream-soft);
+  font-family:var(--serif);
+  font-size:clamp(1.2rem,4vw,1.55rem);
+  line-height:1.65;
+}
+
+.photo-finder-card .primary-btn{
+  margin-top:28px;
+}
+
+@media(max-width:600px){
+  .photo-finder-card{
+    padding:34px 20px;
+  }
+
+  .photo-icon{
+    width:68px;
+    height:68px;
+    font-size:1.7rem;
+  }
+}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
@@ -477,6 +549,33 @@
     </div></div></section>
     <section class="section" id="family"><div class="wrap"><div class="family-card reveal"><h2 class="section-title waiting-eyes-title">Waiting Eyes</h2><div class="family-names"><div class="family-name">Mr. &amp; Mrs. Naseer Ahmed</div><div class="family-name">Mr. Zaheer Ahmed <span style="color:var(--gold);font-size:.85em">(Late)</span> &amp; Mrs.</div><div class="family-name">Mr. &amp; Mrs. Zamir Ahmed</div><div class="family-name">Mr. &amp; Mrs. Toqeer Akhtar</div><div class="family-name">Mr. &amp; Mrs. Tanveer Husain</div></div></div></div></section>
     <section class="section" id="memorial"><div class="wrap"><div class="memorial-card reveal"><div class="memorial-photo"><img src="ustad-zaheer.jpg" alt="Ustad Zaheer" onerror="this.style.display='none';this.parentElement.classList.add('empty')"></div><p class="kicker">In Loving Memory Of</p><h2 class="memorial-name">Ustad Zaheer</h2><p class="memorial-text">Your love, guidance and cherished memories remain forever in our hearts and prayers. You may not be with us in person, but your presence will always be felt in every moment of this celebration.</p></div></div></section>
+    <section class="section" id="photos">
+    <div class="wrap">
+
+        <div class="photo-finder-card reveal">
+
+            <div class="photo-icon">📸</div>
+
+            <p class="kicker">
+                Wedding Memories
+            </p>
+
+            <h2 class="photo-finder-title">
+                Find Your Photos From the Event
+            </h2>
+
+            <p class="photo-finder-text">
+                Our AI will find every photo you're in and deliver them to you the same day.
+            </p>
+
+            <a href="/Photos/" class="primary-btn">
+                Find My Photos
+            </a>
+
+        </div>
+
+    </div>
+</section>
     <section class="section closing"><div class="wrap reveal"><div class="star">✦</div><p>Your presence and prayers will make our celebration truly special.</p><h2 class="section-title" style="font-size:clamp(3rem,13vw,5.8rem);margin-bottom:0">Faisal &amp; Zara</h2></div></section>
   </main>
   <script>
